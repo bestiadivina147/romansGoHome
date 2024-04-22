@@ -4,7 +4,7 @@ package edu.badpals.romansgohome;
  * Hello world!
  *
  */
-public class App 
+public class RomansGoHome 
 {
     public static void main( String[] args )
     {
