@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import edu.badpals.romansgohome.RomanNumber;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +25,7 @@ public class NumeroRomanoTest {
         "3000,  UMMMU"
     })
     @Tag("sumatorio")
-    public void grupo_M_test(Short decimal, String roman) {
+    public void grupo_M_test(int decimal, String roman) {
 
         //String testCase = "M";
         numeroRomano = new RomanNumber(roman);
@@ -166,12 +165,12 @@ public class NumeroRomanoTest {
     public void init_regex_collection_test() {
         String testCase = "V";
         numeroRomano = new RomanNumber(testCase);
-        assertThat(numeroRomano.getRegexCollection().getAllRegex()).hasSize(2);
+        assertThat(numeroRomano.getRegexCol().getAllRegex()).hasSize(2);
         
-        assertThat(numeroRomano.getRegexCollection().getAllRegex()).containsExactly("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])", "(C[DM])|(X[LC])|(I[VX])");	
+        assertThat(numeroRomano.getRegexCol().getAllRegex()).containsExactly("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])", "(C[DM])|(X[LC])|(I[VX])");	
         
-        assertThat(numeroRomano.getRegexCollection().getRegex("grupoSumatorio")).isEqualTo("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])");
-        assertThat(numeroRomano.getRegexCollection().getRegex("grupoSustractivo")).isEqualTo("(C[DM])|(X[LC])|(I[VX])");
+        assertThat(numeroRomano.getRegexCol().getRegex("grupoSuma")).isEqualTo("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])");
+        assertThat(numeroRomano.getRegexCol().getRegex("grupoResta")).isEqualTo("(C[DM])|(X[LC])|(I[VX])");
     }
 
     /**
@@ -185,7 +184,7 @@ public class NumeroRomanoTest {
         "4,   IV",
         "900, CM"
     })
-    public void valor_decimal_test(Short decimal, String roman) {
+    public void valor_decimal_test(int decimal, String roman) {
         numeroRomano = new RomanNumber(roman);
         assertEquals(decimal, numeroRomano.decimalValue(roman));
     }
