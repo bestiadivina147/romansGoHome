@@ -8,7 +8,25 @@ public class RegexRomanNumber {
 
     private final Map <String,String >  regexCollection = new HashMap<String, String>();
 
-    private void 
+    public RegexRomanNumber() {
+        this.initRegexCollection();
+    }
+    public  String getRegex(String key) {
+        return this.regexCollection.get(key);
+    }
+    void addRegex(String key, String value) {
+		this.regexCollection.putIfAbsent(key, value);
+	}
+
+    private void initRegexCollection(){
+        this.addRegex("grupoSuma","(?<!I)[XV] | (?<!X)[LC] | (?<!C)[DM] | (?<!C)[DM] ");
+        this.addRegex("grupoResta","I[XV] | X[LC] | C[DM] ");
+    }
+    public List<String> getAllRegex(){
+        return this.regexCollection.values().stream().collect(Collectors.toList());
+    }
+
+     
 
 
 }
